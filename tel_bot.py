@@ -1,10 +1,15 @@
 import logging
 from environs import Env
-from telegram import Update, ForceReply
+import telegram
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 from google.cloud import dialogflow
 
 from dialog_flow import detect_intent_texts
+from tg_logs_handler import TgLogsHandler
+
+
+
+logger = logging.getLogger(__name__)
 
 
 def start(update, context):
@@ -25,27 +30,33 @@ def get_answer(update, context):
 
 def main():
     logging.basicConfig(
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        level=logging.INFO)
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    logger.setLevel(logging.DEBUG)
 
     env = Env()
     env.read_env()
 
     project_id = env.str('DF_PROJECT_ID')
     bot_token = env.str('TG_BOT_TOKEN')
-    updater = Updater(bot_token)
-    dispatcher = updater.dispatcher
+    admin_chat_id = env.str('ADMIN_BOT_CHAT_ID')
+    bot = telegram.Bot(token=bot_token)
+    try:
+        updater = Updater(bot_token)
+        dispatcher = updater.dispatcher
+        bot_data = {
+            "project_id": project_id,
+        }
+        logger.addHandler(TgLogsHandler(bot, admin_chat_id))
+        logger.info('запущен tel_bot')
 
-    bot_data = {
-        "project_id": project_id,
-        #"sesion_id": session_id,
-    }
-    dispatcher.add_handler(CommandHandler("start", start))
-    dispatcher.add_handler(MessageHandler(Filters.text, get_answer))
-    dispatcher.bot_data = bot_data
+        dispatcher.add_handler(CommandHandler("start", start))
+        dispatcher.add_handler(MessageHandler(Filters.text, get_answer))
+        dispatcher.bot_data = bot_data
 
-    updater.start_polling()
-    updater.idle()
+        updater.start_polling()
+        updater.idle()
+    except Exception as error:
+        logging.exception(f"tel_bot упал с ошибкой: {error}")
 
 
 if __name__ == '__main__':
