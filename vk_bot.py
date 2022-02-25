@@ -12,12 +12,12 @@ def get_ai_answer(event, vk_bot, project_id):
     user_id = event.user_id
     ai_answer = detect_intent_texts(project_id, user_id, client_text,
                                     language_code='ru')
-    #print(ai_answer)
-    vk_bot.messages.send(
-        user_id=event.user_id,
-        message=ai_answer,
-        random_id=random.randint(1, 1000)
-    )
+    if not ai_answer.intent.is_fallback:
+        vk_bot.messages.send(
+            user_id=event.user_id,
+            message=ai_answer.fulfillment_text,
+            random_id=random.randint(1, 1000)
+        )
 
 
 def main():

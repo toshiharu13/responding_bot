@@ -18,7 +18,8 @@ def get_answer(update, context):
     session_id = update.effective_chat.id
     language_code = 'ru'
     project_id = context.bot_data['project_id']
-    ai_answer = detect_intent_texts(project_id, session_id, client_text, language_code)
+    ai_answer = detect_intent_texts(project_id, session_id, client_text,
+                                    language_code).fulfillment_text
     update.message.reply_text(ai_answer)
 
 
