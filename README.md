@@ -32,17 +32,20 @@ DF_PROJECT_ID = 'ID проекта Dialog_flow'
 GOOGLE_APPLICATION_CREDENTIALS = 'путь до файла json c аутентификационными данными Dialog_flow'
 ```
 ## Запуск
-запуск телеграм бота
+Запуск телеграм бота
 ```shell
 python tel_bot.py
 ```
-запуск VK бота
+Запуск VK бота
 ```shell
 python vk_bot.py
 ```
-загрузка обучающих фраз в Dialog_flow
+
+## обучение бота
+Загрузка обучающих фраз в Dialog_flow
 ```shell
 python new_intent.py
 ```
+Для обучения нужно разместить файл в формате json с данными для обучения
 ## Цель проекта
 Код написан в рамках самостоятельного проекта на онлайн-курсе для веб-разработчиков [Devman](https://dvmn.org).

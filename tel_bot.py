@@ -1,13 +1,13 @@
 import logging
-from environs import Env
+
 import telegram
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+from environs import Env
 from google.cloud import dialogflow
+from telegram.ext import (CallbackContext, CommandHandler, Filters,
+                          MessageHandler, Updater)
 
 from dialog_flow import detect_intent_texts
 from tg_logs_handler import TgLogsHandler
-
-
 
 logger = logging.getLogger(__name__)
 

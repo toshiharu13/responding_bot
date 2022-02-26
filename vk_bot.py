@@ -1,13 +1,13 @@
 import logging
-from environs import Env
-import vk_api
 import random
+
 import telegram
-from vk_api.longpoll import VkLongPoll, VkEventType
+import vk_api
+from environs import Env
+from vk_api.longpoll import VkEventType, VkLongPoll
 
 from dialog_flow import detect_intent_texts
 from tg_logs_handler import TgLogsHandler
-
 
 logger = logging.getLogger(__name__)
 

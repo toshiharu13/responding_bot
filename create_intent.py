@@ -1,6 +1,7 @@
-import logging
-from environs import Env
 import json
+import logging
+
+from environs import Env
 
 
 def create_intent(project_id, display_name, training_phrases_parts,
@@ -14,7 +15,7 @@ def create_intent(project_id, display_name, training_phrases_parts,
     training_phrases = []
     for training_phrases_part in training_phrases_parts:
         part = dialogflow.Intent.TrainingPhrase.Part(text=training_phrases_part)
-        # Here we create a new training phrase for each provided part.
+
         training_phrase = dialogflow.Intent.TrainingPhrase(parts=[part])
         training_phrases.append(training_phrase)
 
@@ -30,7 +31,7 @@ def create_intent(project_id, display_name, training_phrases_parts,
         request={"parent": parent, "intent": intent}
     )
 
-    print("Intent created: {}".format(response))
+    logging.info('Intent created: {}'.format(response))
 
 
 def main():
