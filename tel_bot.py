@@ -18,7 +18,7 @@ def start(update, context):
         text="Обнаружена база повстанцев!")
 
 
-def get_answer(update, context):
+def print_ai_answer(update, context):
     client_text = update.message.text
     session_id = update.effective_chat.id
     language_code = 'ru'
@@ -50,7 +50,7 @@ def main():
         logger.info('запущен tel_bot')
 
         dispatcher.add_handler(CommandHandler("start", start))
-        dispatcher.add_handler(MessageHandler(Filters.text, get_answer))
+        dispatcher.add_handler(MessageHandler(Filters.text, print_ai_answer))
         dispatcher.bot_data = bot_data
 
         updater.start_polling()
