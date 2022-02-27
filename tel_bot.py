@@ -56,7 +56,7 @@ def main():
         updater.start_polling()
         updater.idle()
     except Exception as error:
-        logging.exception(f"tel_bot упал с ошибкой: {error}")
+        logger.exception(f"tel_bot упал с ошибкой: {error}")
 
 
 if __name__ == '__main__':

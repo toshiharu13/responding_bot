@@ -50,7 +50,7 @@ def main():
             if event.type == VkEventType.MESSAGE_NEW and event.to_me:
                 print_ai_answer(event, vk_bot, project_id)
     except Exception as error:
-        logging.exception(f"vk_bot упал с ошибкой: {error}")
+        logger.exception(f"vk_bot упал с ошибкой: {error}")
 
 
 if __name__ == '__main__':
