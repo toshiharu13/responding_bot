@@ -1,6 +1,6 @@
 # Бот помощник для тех поддержки
 [![Python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
-[![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)](https://www.djangoproject.com/)
+[![VK](https://img.shields.io/badge/вконтакте-%232E87FB.svg?&style=for-the-badge&logo=vk&logoColor=white)](https://vk.com/)
 [![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://telegram.org/)
 ## Описание
 Данная программа подключается к  [Telegram](https://telegram.org/) и [VK](https://vk.com), и используя нейросети от [Dialog_flow](https://dialogflow.cloud.google.com) для ответов на вопросы.
@@ -46,7 +46,7 @@ python vk_bot.py
 ```shell
 python new_intent.py
 ```
-Для обучения нужно разместить файл в формате json с данными для обучения
+Для обучения нужно разместить файл в формате json с данными для обучения в корне проекта
 
 ## Примеры использования
 [телеграм бот](https://t.me/test_elf_bot)
