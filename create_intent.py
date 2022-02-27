@@ -43,7 +43,6 @@ def main():
     env.read_env()
 
     project_id = env.str('DF_PROJECT_ID')
-    message_texts = []
     with open("new_intent.json", "r", encoding='utf-8') as my_file:
         file_contents = json.load(my_file)
         for key in file_contents:
@@ -52,7 +51,7 @@ def main():
             display_name = key
             training_phrases_parts = job_intent['questions']
             message_text = job_intent['answer']
-            message_texts.append(message_text)
+            message_texts = [message_text]
             create_intent(project_id, display_name, training_phrases_parts,
                           message_texts)
 
