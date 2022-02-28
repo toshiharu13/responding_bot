@@ -12,7 +12,7 @@ from tg_logs_handler import TgLogsHandler
 logger = logging.getLogger(__name__)
 
 
-def print_ai_answer(event, vk_bot, project_id):
+def send_recognized_answer(event, vk_bot, project_id):
     client_text = event.text
     user_id = event.user_id
     ai_answer = detect_intent_texts(project_id, user_id, client_text,
@@ -48,7 +48,7 @@ def main():
 
         for event in longpoll.listen():
             if event.type == VkEventType.MESSAGE_NEW and event.to_me:
-                print_ai_answer(event, vk_bot, project_id)
+                send_recognized_answer(event, vk_bot, project_id)
     except Exception as error:
         logger.exception(f"vk_bot упал с ошибкой: {error}")
 

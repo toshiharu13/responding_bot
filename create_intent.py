@@ -45,12 +45,11 @@ def main():
     project_id = env.str('DF_PROJECT_ID')
     with open("new_intent.json", "r", encoding='utf-8') as my_file:
         file_contents = json.load(my_file)
-        for key in file_contents:
-            print('keysss: %s, valuess: %s' % (key, file_contents[key]))
-            job_intent = file_contents[key]
-            display_name = key
-            training_phrases_parts = job_intent['questions']
-            message_text = job_intent['answer']
+
+        for intent_name, intent_context in file_contents.items():
+            display_name = intent_name
+            training_phrases_parts = intent_context['questions']
+            message_text = intent_context['answer']
             message_texts = [message_text]
             create_intent(project_id, display_name, training_phrases_parts,
                           message_texts)
